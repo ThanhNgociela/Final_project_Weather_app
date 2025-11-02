@@ -8,7 +8,7 @@ def weather_emoji(weather_id):
     elif 600 <= weather_id <= 622:
         return "❄️"
     elif 701 <= weather_id <= 771:
-        return "😶‍🌫️"
+        return "😶‍🌫️"   
     elif weather_id == 781:
         return "🌪️"
     elif weather_id == 800:
