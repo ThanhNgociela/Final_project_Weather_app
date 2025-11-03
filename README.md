@@ -6,8 +6,9 @@ Kết quả được trả về dưới dạng **JSON**, sau đó được chuy�
 - Nhiệt độ  
 - Hiện tượng 
 - Mô tả thời tiết  
-
 và hiển thị lên **giao diện người dùng (UI)** bằng PyQt hoặc console.
+
+Hướng ứng dụng: ứng dụng dùng để tích hợp với những chương trình lớn hơn trong tương lai
 
 ---
 
