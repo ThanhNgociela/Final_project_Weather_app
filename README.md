@@ -13,7 +13,7 @@ và hiển thị lên **giao diện người dùng (UI)** bằng PyQt hoặc con
 
 # Mô tả chi tiết cách thực hiện
 ## 1. Cú pháp API
-https://api.openweathermap.org/data/2.5/weather
+https://api.openweathermap.org/data/2.5/weather <bt>
     ?q=<tên_thành_phố> ví dụ: Hanoi, Ho Chi Minh City <br>
     &units=<đơn_vị>    ví dụ: metric (°C, m/s), imperial (°F, mph) <br>
     &appid=<API_key>   ví dụ: 8089a847e3d2871d80a885c4667527c2 <br>
