@@ -4,8 +4,7 @@
 Ứng dụng này sử dụng **API của OpenWeather** kết hợp với thư viện **`requests`** trong Python để lấy dữ liệu thời tiết theo tên thành phố.  
 Kết quả được trả về dưới dạng **JSON**, sau đó được chuyển sang **dictionary** (`dict`) để trích xuất các thông tin như:  
 - Nhiệt độ  
-- Độ ẩm  
-- Tốc độ gió  
+- Hiện tượng 
 - Mô tả thời tiết  
 
 và hiển thị lên **giao diện người dùng (UI)** bằng PyQt hoặc console.
@@ -20,17 +19,17 @@ https://api.openweathermap.org/data/2.5/weather
     &lang=<mã_ngôn_ngữ>ví dụ: vi (tiếng Việt), en (tiếng Anh) <br>
 
 # 2. Cú pháp API và cách gửi yêu cầu đến API và nhận phản hồi từ server:
-import requests
+**import requests**
 
 city = "Hà Nội"
 api_key = "8089a847e3d2871d80a885c4667527c2"
 
 # Tạo URL API: chèn tên thành phố, đơn vị đo, khóa API và ngôn ngữ
-url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={api_key}&lang=vi"
-
+**url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={api_key}&lang=vi"
+**
 # Gửi yêu cầu GET đến API (để lấy dữ liệu mà không thay đổi máy chủ)
-response = requests.get(url)
-
+**response = requests.get(url)
+**
 print(response)
 # ➜ <Response [200]> nghĩa là yêu cầu thành công, server phản hồi OK
 
