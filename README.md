@@ -44,9 +44,13 @@ api_key = "8089a847e3d2871d80a885c4667527c2"
 **
 print(response)
 ### ➜ <Response [200]> Đây là kết quả đầu ra quan trọng nhất. Mã Trạng thái HTTP 200 (OK) xác nhận rằng:
+
 -Giao tiếp mạng thành công.
+
 -Máy chủ đã xử lý yêu cầu (bao gồm cả xác thực API Key).
+
 -Phần thân (body) của phản hồi hiện đã chứa chuỗi dữ liệu JSON mong muốn, sẵn sàng cho bước xử lý tiếp theo (response.json()).
+
 ## 3.Server gửi phản hồi với phần thân phản hồi (body) chứa dữ liệu dưới dạng JSON (trong trường hợp đã kết nổi thành công: <Response [200]> ) :
 {
   "coord": {"lon": 105.8412, "lat": 21.0245}, <br>
