@@ -14,7 +14,7 @@ Hướng ứng dụng: ứng dụng dùng để tích hợp với những chươ
 
 # Mô tả chi tiết cách thực hiện
 ## 1. Cú pháp API
-**Cú pháp**: https://api.openweathermap.org/data/2.5/weather?q=<tên_thành_phố>
+**Cú pháp**: (https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={api_key}&lang=vi)
 
 **Endpoint gốc**: https://api.openweathermap.org/data/2.5/weather 
 
