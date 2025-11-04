@@ -15,8 +15,11 @@ Hướng ứng dụng: ứng dụng dùng để tích hợp với những chươ
 # Mô tả chi tiết cách thực hiện
 ## 1. Cú pháp API
 **Cú pháp**: https://api.openweathermap.org/data/2.5/weather?q=<tên_thành_phố>
+
 **Endpoint gốc**: https://api.openweathermap.org/data/2.5/weather 
+
 **Các tham số truy vấn**: Các tham số được nối vào sau dấu ? và cách nhau bằng &, tạo nên yêu cầu tùy chỉnh:
+
 -q={city}: Chỉ định đối tượng cần tìm kiếm (Thành phố).
 -units=metric: Yêu cầu đơn vị đo lường theo hệ mét (nhiệt độ theo độ C).
 -appid={api_key}: Khóa API dùng để xác thực ứng dụng của bạn với máy chủ.
@@ -82,7 +85,9 @@ weather_description = data["weather"][0]["description"] #truy cập cùng đối
 
 **##🧩 3. Tiềm năng Tích hợp và Mở rộng**
 **Khả năng Tái sử dụng (Reusability**): Toàn bộ logic API có thể dễ dàng đóng gói thành một hàm hoặc lớp (ví dụ: WeatherService) và được import vào bất kỳ dự án Python lớn nào khác (như web framework Django/Flask, hay các ứng dụng phân tích dữ liệu).
+
 **Dễ dàng Mở rộng:** Nếu sau này ta muốn lấy thêm dữ liệu như áp suất, độ ẩm, hoặc tốc độ gió, ta chỉ cần thêm một dòng trích xuất dữ liệu (ví dụ: data["main"]["humidity"]) vào module dịch vụ mà không cần thay đổi giao diện PyQt hiện tại.
+
 **Trừu tượng hóa (Abstraction):** Lớp giao diện (PyQt) chỉ cần biết rằng nó gọi một hàm và nhận lại nhiệt độ, ID, và mô tả. Nó không cần quan tâm đến URL, API key, hay cách JSON được xử lý. Điều này giúp code sạch sẽ và dễ bảo trì.
 
 
