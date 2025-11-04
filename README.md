@@ -21,10 +21,15 @@ Hướng ứng dụng: ứng dụng dùng để tích hợp với những chươ
 **Các tham số truy vấn**: Các tham số được nối vào sau dấu ? và cách nhau bằng &, tạo nên yêu cầu tùy chỉnh:
 
 -q={city}: Chỉ định đối tượng cần tìm kiếm (Thành phố).
+
 -units=metric: Yêu cầu đơn vị đo lường theo hệ mét (nhiệt độ theo độ C).
+
 -appid={api_key}: Khóa API dùng để xác thực ứng dụng của bạn với máy chủ.
+
 -lang=vi: Yêu cầu mô tả thời tiết được trả về bằng Tiếng Việt.
+
 -F-string: Việc sử dụng f"..." là phương pháp hiệu quả nhất trong Python để chèn biến (city, api_key) vào URL, tạo ra một yêu cầu động.
+
 ## 2. Cú pháp API và cách gửi yêu cầu đến API và nhận phản hồi từ server:
 Khai báo Client HTTP: Nhập thư viện chuẩn để biến Python thành một máy khách (client) có khả năng gửi và nhận yêu cầu HTTP.
 **import requests**
@@ -84,10 +89,11 @@ weather_description = data["weather"][0]["description"] #truy cập cùng đối
 ---
 
 **##🧩 3. Tiềm năng Tích hợp và Mở rộng**
+
 **Khả năng Tái sử dụng (Reusability**): Toàn bộ logic API có thể dễ dàng đóng gói thành một hàm hoặc lớp (ví dụ: WeatherService) và được import vào bất kỳ dự án Python lớn nào khác (như web framework Django/Flask, hay các ứng dụng phân tích dữ liệu).
 
 **Dễ dàng Mở rộng:** Nếu sau này ta muốn lấy thêm dữ liệu như áp suất, độ ẩm, hoặc tốc độ gió, ta chỉ cần thêm một dòng trích xuất dữ liệu (ví dụ: data["main"]["humidity"]) vào module dịch vụ mà không cần thay đổi giao diện PyQt hiện tại.
 
-**Trừu tượng hóa (Abstraction):** Lớp giao diện (PyQt) chỉ cần biết rằng nó gọi một hàm và nhận lại nhiệt độ, ID, và mô tả. Nó không cần quan tâm đến URL, API key, hay cách JSON được xử lý. Điều này giúp code sạch sẽ và dễ bảo trì.
+**Trừu tượng hóa (Abstraction):** Lớp giao diện (PyQt) chỉ cần biết rằng nó gọi một hàm và nhận lại nhiệt độ, ID, và mô tả. Nó không cần quan tâm đến URL, API key, hay cách JSON được xử lý. Điều này giúp code sạch sẽ và dễ bảo trì.
 
 
