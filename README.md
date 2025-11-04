@@ -14,22 +14,20 @@ Hướng ứng dụng: ứng dụng dùng để tích hợp với những chươ
 
 # Mô tả chi tiết cách thực hiện
 ## 1. Cú pháp API
-https://api.openweathermap.org/data/2.5/weather?q=<tên_thành_phố>
-    &units=<đơn_vị>
-    &appid=<API_key>
-    &lang=<mã_ngôn_ngữ>
-    <br>
-    ?q=<tên_thành_phố> ví dụ: Hanoi, Ho Chi Minh City <br>
-    &units=<đơn_vị>    ví dụ: metric (°C, m/s), imperial (°F, mph) <br>
-    &appid=<API_key>   ví dụ: 8089a847e3d2871d80a885c4667527c2 <br>
-    &lang=<mã_ngôn_ngữ>ví dụ: vi (tiếng Việt), en (tiếng Anh) <br>
-
+**Cú pháp**: https://api.openweathermap.org/data/2.5/weather?q=<tên_thành_phố>
+**Endpoint gốc**: https://api.openweathermap.org/data/2.5/weather 
+**Các tham số truy vấn**: Các tham số được nối vào sau dấu ? và cách nhau bằng &, tạo nên yêu cầu tùy chỉnh:
+-q={city}: Chỉ định đối tượng cần tìm kiếm (Thành phố).
+-units=metric: Yêu cầu đơn vị đo lường theo hệ mét (nhiệt độ theo độ C).
+-appid={api_key}: Khóa API dùng để xác thực ứng dụng của bạn với máy chủ.
+-lang=vi: Yêu cầu mô tả thời tiết được trả về bằng Tiếng Việt.
+-F-string: Việc sử dụng f"..." là phương pháp hiệu quả nhất trong Python để chèn biến (city, api_key) vào URL, tạo ra một yêu cầu động.
 ## 2. Cú pháp API và cách gửi yêu cầu đến API và nhận phản hồi từ server:
+Khai báo Client HTTP: Nhập thư viện chuẩn để biến Python thành một máy khách (client) có khả năng gửi và nhận yêu cầu HTTP.
 **import requests**
 
 city = "Hà Nội"
 api_key = "8089a847e3d2871d80a885c4667527c2"
-
 ### Tạo URL API: chèn tên thành phố, đơn vị đo, khóa API và ngôn ngữ
 **url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={api_key}&lang=vi"
 **
@@ -37,8 +35,10 @@ api_key = "8089a847e3d2871d80a885c4667527c2"
 **response = requests.get(url)
 **
 print(response)
-### ➜ <Response [200]> nghĩa là yêu cầu thành công, server phản hồi OK
-
+### ➜ <Response [200]> Đây là kết quả đầu ra quan trọng nhất. Mã Trạng thái HTTP 200 (OK) xác nhận rằng:
+-Giao tiếp mạng thành công.
+-Máy chủ đã xử lý yêu cầu (bao gồm cả xác thực API Key).
+-Phần thân (body) của phản hồi hiện đã chứa chuỗi dữ liệu JSON mong muốn, sẵn sàng cho bước xử lý tiếp theo (response.json()).
 ## 3.Server gửi phản hồi với phần thân phản hồi (body) chứa dữ liệu dưới dạng JSON (trong trường hợp đã kết nổi thành công: <Response [200]> ) :
 {
   "coord": {"lon": 105.8412, "lat": 21.0245}, <br>
@@ -75,5 +75,14 @@ print (data) <br>
 ## 5. Hiện dữ liệu:
 #Khi này, nếu như ta muốn cho giao diện hiện dữ liệu nào thì cứ lấy và bỏ dữ liệu vào 1 biến: <br>
 temperature_c = data["main"]["temp"] #truy cập vào khóa main (dict con), khóa temp để lấy giá trị temp đã ở độ C (units=metric ở url) <br>
-weather_id = data["weather"][0]["id"] #truy cập khóa weather (list) lấy phần tử đầu [0], truy cập khóa id (số dùng để xác định loại thời tiết) <br>
+weather_id = data["weather"][0]["id"] #truy cập khóa weather (list) lấy phần tử đầu [0], truy cập khóa id (số dùng để xác định loại thời tiết) Mã ID này là đầu vào cho hàm weather_emoji(), tách biệt logic chọn biểu tượng khỏi logic lấy dữ liệu. <br>
 weather_description = data["weather"][0]["description"] #truy cập cùng đối tượng thời tiết, lấy khóa description <br>
+
+---
+
+**##🧩 3. Tiềm năng Tích hợp và Mở rộng**
+**Khả năng Tái sử dụng (Reusability**): Toàn bộ logic API có thể dễ dàng đóng gói thành một hàm hoặc lớp (ví dụ: WeatherService) và được import vào bất kỳ dự án Python lớn nào khác (như web framework Django/Flask, hay các ứng dụng phân tích dữ liệu).
+**Dễ dàng Mở rộng:** Nếu sau này ta muốn lấy thêm dữ liệu như áp suất, độ ẩm, hoặc tốc độ gió, ta chỉ cần thêm một dòng trích xuất dữ liệu (ví dụ: data["main"]["humidity"]) vào module dịch vụ mà không cần thay đổi giao diện PyQt hiện tại.
+**Trừu tượng hóa (Abstraction):** Lớp giao diện (PyQt) chỉ cần biết rằng nó gọi một hàm và nhận lại nhiệt độ, ID, và mô tả. Nó không cần quan tâm đến URL, API key, hay cách JSON được xử lý. Điều này giúp code sạch sẽ và dễ bảo trì.
+
+
